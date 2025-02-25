@@ -25,3 +25,43 @@ jobs:
       - run:
           name: Run Cypress with Percy
           command: npx percy exec -- npx cypress run
+  preview:
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: Install Vercel CLI
+          command: npm install -g vercel
+      - run:
+          name: Deploy project to Vercel (preview)
+          command: vercel --token $VERCEL_TOKEN --yes
+
+  deploy:
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: Install Vercel CLI
+          command: npm install -g vercel
+      - run:
+          name: Deploy project to Vercel
+          command: vercel --token $VERCEL_TOKEN --prod --yes
+
+workflows:
+  version: 2
+  preview_deployment:
+    jobs:
+      - build-node
+      - preview:
+          requires:
+            - build-node
+          filters:
+            branches:
+              ignore: main
+      - deploy:
+          requires:
+            - build-node
+            - preview
+          filters:
+            branches:
+              only: main
