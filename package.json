@@ -16,6 +16,8 @@
   "devDependencies": {
     "@eslint/js": "^9.21.0",
     "@lhci/cli": "^0.14.0",
+    "@percy/cli": "^1.30.7",
+    "@percy/cypress": "^3.1.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
