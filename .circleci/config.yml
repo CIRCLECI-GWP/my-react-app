@@ -13,3 +13,6 @@ jobs:
           name: Start Vite Dev Server
           command: npm run dev
           background: true
+      - run:
+          name: Run Lighthouse CI
+          command: npx lhci autorun
