@@ -51,16 +51,16 @@ workflows:
   version: 2
   preview_deployment:
     jobs:
-      - build-node
+      - build
       - preview:
           requires:
-            - build-node
+            - build
           filters:
             branches:
               ignore: main
       - deploy:
           requires:
-            - build-node
+            - build
             - preview
           filters:
             branches:
