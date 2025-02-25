@@ -17,13 +17,35 @@
 #           name: Run Lighthouse CI
 #           command: npx lhci autorun
 
+# version: 2.1
+# orbs:
+#   browser-tools: circleci/browser-tools@1.2.3
+# jobs:
+#   build:
+#     docker:
+#       - image: cimg/node:16.13-browsers
+#     working_directory: ~/your-project
+#     steps:
+#       - checkout
+#       - browser-tools/install-chrome
+#       - run:
+#           name: Install Dependencies
+#           command: npm install # Ensures Vite is installed
+#       - run:
+#           name: Start Vite Dev Server
+#           command: npm run dev
+#           background: true
+#       - run:
+#           name: Run Lighthouse CI
+#           command: npx lhci autorun
+
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.2.3
 jobs:
   build:
     docker:
-      - image: cimg/node:16.13-browsers
+      - image: cimg/node:20.9-browsers # ✅ Upgrade Node.js version
     working_directory: ~/your-project
     steps:
       - checkout
